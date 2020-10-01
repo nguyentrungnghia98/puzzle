@@ -1,0 +1,126 @@
+﻿<Window x:Class="Puzzle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="543" Width="800"
+        Loaded="Window_Loaded"
+        MouseMove="Window_MouseMove"
+     >
+
+    <Grid Name="grid" Margin="0,0,0,-2" Height="508" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="1" Margin="16px" Panel.ZIndex="9">
+            <DockPanel>
+
+                <Canvas Name="game">
+                    <WrapPanel Canvas.Left="100" Canvas.Top="10">
+                        <Button x:Name="restartButton"  Margin="0,0,10,0"  Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="38" FontSize="18" Background="#FFCDCDCD" BorderBrush="{x:Null}" Foreground="#FF3E3E3E" Click="RestartButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="saveButton" Margin="0,0,10,0"  Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="38" FontSize="18" Background="#F5F5F5" BorderBrush="{x:Null}" Foreground="#FF3E3E3E" Click="SaveButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="loadButton" Margin="0,0,10,0"  Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="38" FontSize="18" Background="#F5F5F5" BorderBrush="{x:Null}" Foreground="#FF3E3E3E" Click="LoadButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </WrapPanel>
+                    
+
+                </Canvas>
+            </DockPanel>
+        </Border>
+        <Border Panel.ZIndex="1" Grid.Column="1" Grid.Row="1" BorderThickness="1"  BorderBrush="Gray" Margin="0,16,16,16" CornerRadius="4">
+            <DockPanel>
+                <StackPanel>
+                    <TextBlock x:Name="txtStatus" Margin="0,10,0,10" HorizontalAlignment="Center"  FontSize="20" FontWeight="Bold" Text="Click start to play"></TextBlock>
+                    <Border Height="40" Width="100" Margin="0,10, 0, 20"  BorderThickness="1"  BorderBrush="Gray" CornerRadius="2">
+                        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Margin="2,0" FontWeight="Bold">0</TextBlock>
+                            <TextBlock x:Name="txtMinute" FontSize="20" FontWeight="Bold">3</TextBlock>
+                            <TextBlock FontSize="20" Margin="4,0" FontWeight="Bold">:</TextBlock>
+                            <TextBlock x:Name="txtSecond1" FontSize="20" FontWeight="Bold">0</TextBlock>
+                            <TextBlock x:Name="txtSecond2" FontSize="20" Margin="2,0" FontWeight="Bold">0</TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <Border Height="160" Width="160" >
+                        <DockPanel>
+                            <Image x:Name="previewImage"></Image>
+                        </DockPanel>
+                    </Border>
+
+                    <Button x:Name="UploadButton" Margin="0,10,0,0"  Content="Upload" Width="100" Height="38" FontSize="18" Background="#FFD6D6D6" BorderBrush="{x:Null}" Foreground="#FF3E3E3E" Click="UploadButton_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Border Height="110" Width="110" Margin="0,25,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Button x:Name="moveLeftButton" Grid.Column="0" Grid.Row="1" BorderThickness="1,1,0,1" Click="MoveLeftButton_Click">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="15,0,0,15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="moveUpButton" Grid.Column="1" Grid.Row="0" BorderThickness="1,1,1,0" Click="MoveUpButton_Click">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="15,15,0,0"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="moveRightButton" Grid.Column="3" Grid.Row="1" BorderThickness="0,1,1,1" Click="MoveRightButton_Click">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="0,15,15,0"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="moveDownButton" Grid.Column="1" Grid.Row="2" BorderThickness="1,0,1,1" Height="37" VerticalAlignment="Top" Click="MoveDownButton_Click">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="0,0,15,15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button  Grid.Column="1" Grid.Row="1" BorderBrush="{x:Null}" IsEnabled="False">
+                            </Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>
